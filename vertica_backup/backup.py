@@ -100,7 +100,7 @@ def main(argv=None):
     try:
         base_dir, prefix_dir = calculate_paths(config)
         swift_store = SwiftStore(config['swift_key'], config['swift_region'], config['swift_tenant'],
-                                 config['swift_url'], config['swift_user'], prefix_dir)
+                                 config['swift_url'], config['swift_user'], prefix_dir, config['auth_version'])
         fs_store = FSStore(base_dir, prefix_dir)
         upload_time = datetime.today()
 

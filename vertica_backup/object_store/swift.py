@@ -46,7 +46,7 @@ class SwiftStore(ObjectStore):
         Sets the swift container to the domain and puts all files in a subdir for the host.
     """
 
-    def __init__(self, key, region, tenant, url, user, prefix, domain=None, hostname=None, vnode=None):
+    def __init__(self, key, region, tenant, url, user, prefix, auth_version, domain=None, hostname=None, vnode=None):
         """ Takes the config object from the backup.py.
             If the domain is specified either the hostname or vnode should be.
             If vnode is specified and hostname isn't the hostname will be discovered from what is in swift. This only
@@ -58,7 +58,7 @@ class SwiftStore(ObjectStore):
         self.url = url
         self.user = user
         self.prefix = prefix
-        self.auth_version = 1
+        self.auth_version = auth_version
 
         self.conn = self._connect_swift()
 
