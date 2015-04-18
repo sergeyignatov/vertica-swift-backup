@@ -58,6 +58,7 @@ class SwiftStore(ObjectStore):
         self.url = url
         self.user = user
         self.prefix = prefix
+        self.auth_version = 1
 
         self.conn = self._connect_swift()
 
@@ -80,7 +81,7 @@ class SwiftStore(ObjectStore):
         """ Start up a swift connection
         """
         return swiftclient.client.Connection(self.url, self.user, self.key, os_options={"region_name": self.region},
-                                             tenant_name=self.tenant, auth_version=2)
+                                             tenant_name=self.tenant, auth_version=self.auth_version)
 
     def _download(self, swift_path, local_path):
         """ Download the file from swift_path to local_path.
